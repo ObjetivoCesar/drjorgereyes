@@ -8,6 +8,7 @@ import Counter from '@/components/Counter';
 import HeroSlider from '@/components/HeroSlider';
 import PlanSection from '@/components/PlanSection';
 import ShortsSlider from '@/components/ShortsSlider';
+import FAQSection from '@/components/shared/FAQSection';
 
 export default function Home() {
   const containerRef = useRef(null);
@@ -59,7 +60,7 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1.5 }}
           >
-            <h1 className="font-barlow text-7xl md:text-9xl font-extrabold text-white tracking-tighter leading-none mb-6">
+            <h1 className="font-barlow text-5xl sm:text-7xl md:text-9xl font-extrabold text-white tracking-tighter leading-none mb-6">
               LOJA <span className="text-acento">AUTOSUFICIENTE</span>
             </h1>
             <p className="font-dmsans text-xl md:text-2xl text-white/80 max-w-2xl mx-auto mb-10 leading-relaxed font-light">
@@ -94,12 +95,12 @@ export default function Home() {
       <HeroSlider />
 
       {/* SECCIÓN 3 — Transformación "Energía que te Paga" */}
-      <section className="bg-primario py-24 lg:py-40 text-white relative">
+      <section className="bg-primario py-16 lg:py-32 text-white relative">
         <div className="container mx-auto px-4">
           <div className="flex flex-col lg:flex-row items-center gap-16">
             <div className="lg:w-1/2">
               <span className="text-acento font-barlow tracking-widest uppercase text-sm mb-4 block">TRANSFORMACIÓN REAL</span>
-              <h2 className="font-barlow text-5xl lg:text-7xl font-bold mb-8 leading-tight">
+              <h2 className="font-barlow text-4xl sm:text-5xl lg:text-7xl font-bold mb-8 leading-tight">
                 TU CASA PAGARÁ TU INTERNET <br/> Y TU <span className="text-solar">ENERGÍA</span>
               </h2>
               <p className="text-white/60 text-lg mb-10 leading-relaxed font-light">
@@ -134,8 +135,11 @@ export default function Home() {
       {/* SECCIÓN 3.5 — Videos "Lo que pasa en las calles" */}
       <ShortsSlider />
 
+      {/* SECCIÓN 3.8 — Preguntas Frecuentes y Semantic SEO */}
+      <FAQSection />
+
       {/* SECCIÓN 4 — Cierre "La Rebelión del Voto Limpio" */}
-      <section className="py-24 lg:py-40 bg-white">
+      <section className="py-16 lg:py-32 bg-white">
         <div className="container mx-auto px-4 text-center">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
@@ -143,7 +147,7 @@ export default function Home() {
             viewport={{ once: true }}
             className="max-w-4xl mx-auto"
           >
-             <h2 className="font-barlow text-5xl lg:text-7xl font-bold text-primario mb-12">
+             <h2 className="font-barlow text-4xl sm:text-5xl lg:text-7xl font-bold text-primario mb-12">
                LA REBELIÓN DEL <span className="text-acento">VOTO LIMPIO</span>
              </h2>
              <div className="relative aspect-video mb-12 overflow-hidden rounded-sm group">

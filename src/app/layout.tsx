@@ -25,7 +25,7 @@ const lora = Lora({
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.jorgereyesloja.ec'),
-  title: 'Jorge Reyes Jaramillo | Candidato a Alcalde Loja 2026 — MASS 115',
+  title: 'Jorge Reyes | Candidato Alcalde Loja 2026 — MASS 115',
   description: 'Descubre las propuestas de Jorge Reyes Jaramillo, candidato a Alcaldía de Loja 2026. Energía solar, internet gratis y la experiencia de quien ya transformó la ciudad.',
   keywords: 'Jorge Reyes Jaramillo Loja, Candidatos alcalde Loja 2026, Jorge Reyes candidato Loja, Propuestas alcaldía Loja 2026, propuestas para Loja',
   alternates: {
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     siteName: 'Jorge Reyes 2026',
     images: [
       {
-        url: '/images/og-jorge-reyes.webp',
+        url: '/images/Jorge_blog.webp',
         width: 1200,
         height: 630,
         alt: 'Jorge Reyes - Loja Autosuficiente',
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    images: ['/images/og-jorge-reyes.webp'],
+    images: ['/images/Jorge_blog.webp'],
   },
 };
 
@@ -79,8 +79,9 @@ const personSchema = {
   },
   telephone: '+593997755478',
   sameAs: [
-    'https://www.facebook.com/jorgereyesjaramillo',
-    'https://www.instagram.com/jorgereyesjaramillo',
+    'https://www.facebook.com/jorge.reyesjaramillo',
+    'https://www.tiktok.com/@jorge.reyes.jaramillo',
+    'https://www.instagram.com/reyesjaramillojorge/',
   ],
 };
 

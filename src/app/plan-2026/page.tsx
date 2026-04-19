@@ -5,7 +5,7 @@ import FloatingSideNav from '@/components/shared/FloatingSideNav';
 import { PLAN_BLOCKS } from '@/components/plan-2026/plan-data';
 
 export const metadata = {
-  title: 'Plan 2026 | Solución Agua Potable y Smart City Loja',
+  title: 'Plan de Gobierno 2026 | Agua, Energía Solar y Smart City — Jorge Reyes Loja',
   description: 'Descubre el proyecto de Smart City para Loja Ecuador: Solución al agua potable 2026, internet gratis, y transporte eléctrico.',
   keywords: 'Smart city Loja Ecuador, Internet gratis Loja proyecto, Solución agua potable Loja 2026, Transporte eléctrico Loja proyecto',
   openGraph: {

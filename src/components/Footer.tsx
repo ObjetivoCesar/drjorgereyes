@@ -78,9 +78,9 @@ export default function Footer() {
               <p>📍 Sucre y Rocafuerte Esq., Loja</p>
               <p>📞 099 775 5478</p>
               <div className="flex space-x-4 pt-2">
-                <Link href="#" className="hover:text-acento transition-colors">FB</Link>
-                <Link href="#" className="hover:text-acento transition-colors">IG</Link>
-                <Link href="#" className="hover:text-acento transition-colors">TW</Link>
+                <Link href="https://www.facebook.com/jorge.reyesjaramillo" target="_blank" className="hover:text-acento transition-colors">FB</Link>
+                <Link href="https://www.instagram.com/reyesjaramillojorge/" target="_blank" className="hover:text-acento transition-colors">IG</Link>
+                <Link href="https://www.tiktok.com/@jorge.reyes.jaramillo" target="_blank" className="hover:text-acento transition-colors">TK</Link>
               </div>
               <nav className="flex flex-col space-y-2 pt-4 border-t border-white/10">
                 {footerLinks.map((link) => (

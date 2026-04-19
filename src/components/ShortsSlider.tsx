@@ -16,7 +16,7 @@ const SHORTS_DATA = [
 
 export default function ShortsSlider() {
   const [currentIndex, setCurrentIndex] = useState(2); // Start in the middle
-  const [playingVideo, setPlayingVideo] = useState<string | null>(null);
+  const [playingIndex, setPlayingIndex] = useState<number | null>(null);
 
   const handleNext = () => {
     setCurrentIndex((prev) => (prev + 1) % SHORTS_DATA.length);
@@ -24,6 +24,14 @@ export default function ShortsSlider() {
 
   const handlePrev = () => {
     setCurrentIndex((prev) => (prev - 1 + SHORTS_DATA.length) % SHORTS_DATA.length);
+  };
+
+  const handleNextVideo = () => {
+    setPlayingIndex((prev) => prev !== null ? (prev + 1) % SHORTS_DATA.length : null);
+  };
+
+  const handlePrevVideo = () => {
+    setPlayingIndex((prev) => prev !== null ? (prev - 1 + SHORTS_DATA.length) % SHORTS_DATA.length : null);
   };
 
   const getPositionClass = (index: number) => {
@@ -59,7 +67,7 @@ export default function ShortsSlider() {
         <span className="text-acento font-barlow tracking-widest uppercase text-sm mb-4 block">
           LO QUE PASA EN LAS CALLES
         </span>
-        <h2 className="font-barlow text-5xl lg:text-7xl font-bold text-primario tracking-tighter">
+        <h2 className="font-barlow text-4xl sm:text-5xl lg:text-7xl font-bold text-primario tracking-tighter">
           CERCANÍA CON EL <span className="text-acento">PUEBLO</span>
         </h2>
       </div>
@@ -72,15 +80,15 @@ export default function ShortsSlider() {
           return (
             <motion.div
               key={short.id}
-              className={`absolute top-0 bottom-0 w-[220px] md:w-[250px] transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] ${getPositionClass(i)}`}
+              className={`absolute top-0 bottom-0 w-[200px] sm:w-[250px] transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] ${getPositionClass(i)}`}
               onClick={() => !isCenter && setCurrentIndex(i)}
               drag={isCenter ? "x" : false}
               dragConstraints={{ left: 0, right: 0 }}
               onDragEnd={isCenter ? handleDragEnd : undefined}
             >
               <div 
-                className={`relative w-full h-full rounded-2xl overflow-hidden shadow-2xl border-4 ${isCenter ? 'border-acento/50' : 'border-transparent'}`}
-                onClick={() => isCenter && setPlayingVideo(short.videoSrc)}
+                className={`relative group w-full h-full rounded-2xl overflow-hidden shadow-2xl border-4 ${isCenter ? 'border-acento/50' : 'border-transparent'}`}
+                onClick={() => isCenter && setPlayingIndex(i)}
               >
                 {/* Preview Image for the card */}
                 <img
@@ -116,34 +124,65 @@ export default function ShortsSlider() {
       </div>
 
       {/* Video Modal Popup */}
-      <AnimatePresence>
-        {playingVideo && (
+      <AnimatePresence mode="wait">
+        {playingIndex !== null && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-50 flex items-center justify-center bg-primario/95 backdrop-blur-sm p-4"
           >
+            {/* Navegación Anterior */}
             <button 
-              className="absolute top-6 right-6 text-white bg-white/10 hover:bg-white/20 rounded-full p-2 z-50"
-              onClick={() => setPlayingVideo(null)}
+              onClick={handlePrevVideo}
+              className="absolute left-4 md:left-10 text-white/50 hover:text-acento transition-colors z-50"
+            >
+              <svg className="w-12 h-12 md:w-16 md:h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
+            </button>
+
+            {/* Cerrar Modal */}
+            <button 
+              className="absolute top-6 right-6 text-white bg-white/10 hover:bg-white/20 rounded-full p-2 z-50 transition-colors"
+              onClick={() => setPlayingIndex(null)}
             >
               <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
             </button>
-            <motion.div 
-              initial={{ scale: 0.9, y: 50 }}
-              animate={{ scale: 1, y: 0 }}
-              exit={{ scale: 0.9, y: 50 }}
-              className="relative w-full max-w-[400px] aspect-[9/16] bg-black rounded-xl overflow-hidden shadow-2xl"
+
+            {/* Video Container con Título */}
+            <div className="flex flex-col items-center gap-4 w-full max-w-[400px]">
+              <motion.div 
+                key={playingIndex}
+                initial={{ scale: 0.9, y: 50, opacity: 0 }}
+                animate={{ scale: 1, y: 0, opacity: 1 }}
+                exit={{ scale: 0.9, y: 50, opacity: 0 }}
+                transition={{ type: "spring", damping: 25, stiffness: 300 }}
+                className="relative w-full aspect-[9/16] bg-black rounded-xl overflow-hidden shadow-2xl border border-white/10"
+              >
+                <iframe 
+                  src={`${SHORTS_DATA[playingIndex].videoSrc}?autoplay=1`}
+                  loading="lazy" 
+                  style={{ border: "none", position: "absolute", top: 0, height: "100%", width: "100%" }} 
+                  allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;" 
+                  allowFullScreen={true}
+                ></iframe>
+              </motion.div>
+              <motion.h4 
+                key={`title-${playingIndex}`}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="text-white font-barlow text-xl sm:text-2xl font-bold tracking-tight text-center"
+              >
+                {SHORTS_DATA[playingIndex].title}
+              </motion.h4>
+            </div>
+
+            {/* Navegación Siguiente */}
+            <button 
+              onClick={handleNextVideo}
+              className="absolute right-4 md:right-10 text-white/50 hover:text-acento transition-colors z-50"
             >
-              <iframe 
-                src={playingVideo} 
-                loading="lazy" 
-                style={{ border: "none", position: "absolute", top: 0, height: "100%", width: "100%" }} 
-                allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;" 
-                allowFullScreen={true}
-              ></iframe>
-            </motion.div>
+              <svg className="w-12 h-12 md:w-16 md:h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+            </button>
           </motion.div>
         )}
       </AnimatePresence>

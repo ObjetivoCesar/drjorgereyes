@@ -12,6 +12,7 @@ export interface PlanBlockData {
   accentColor: 'acento' | 'solar' | 'gold';
   reverse: boolean;
   image: string | null;
+  objectPosition?: string;
 }
 
 export const PLAN_BLOCKS: PlanBlockData[] = [
@@ -54,6 +55,7 @@ export const PLAN_BLOCKS: PlanBlockData[] = [
     accentColor: "solar",
     reverse: true,
     image: "/images/stats-solar.webp",
+    objectPosition: "object-top",
   },
   {
     id: "movilidad",
@@ -114,5 +116,6 @@ export const PLAN_BLOCKS: PlanBlockData[] = [
     accentColor: "solar",
     reverse: false,
     image: "/images/jorge_niños.webp",
+    objectPosition: "object-top",
   },
 ];

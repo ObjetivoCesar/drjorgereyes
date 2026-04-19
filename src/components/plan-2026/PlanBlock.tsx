@@ -19,6 +19,7 @@ interface PlanBlockProps {
   reverse?: boolean;
   accentColor: 'acento' | 'solar' | 'gold';
   pdfLink?: string;
+  objectPosition?: string;
 }
 
 export default function PlanBlock({
@@ -34,7 +35,8 @@ export default function PlanBlock({
   image,
   reverse = false,
   accentColor,
-  pdfLink
+  pdfLink,
+  objectPosition = "object-cover"
 }: PlanBlockProps) {
   const accentClasses = {
     acento: 'text-acento',
@@ -115,7 +117,7 @@ export default function PlanBlock({
                     src={image}
                     alt={tag}
                     fill
-                    className="object-cover transition-transform duration-1000 group-hover:scale-110"
+                    className={`object-cover transition-transform duration-1000 group-hover:scale-110 ${objectPosition}`}
                   />
                   <div className="absolute inset-0 bg-primario/20 mix-blend-multiply transition-opacity group-hover:opacity-0" />
                   

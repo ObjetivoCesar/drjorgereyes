@@ -103,7 +103,7 @@ export default function HeroSlider() {
   };
 
   return (
-    <section className="relative w-full overflow-hidden bg-primario" style={{ height: '80vh' }}>
+    <section className="relative w-full overflow-hidden bg-primario h-[70vh] lg:h-[80vh]">
 
       {/* SLIDES */}
       <AnimatePresence mode="sync">
@@ -144,7 +144,7 @@ export default function HeroSlider() {
                 {slide.tag}
               </span>
               <h2 className="font-barlow font-extrabold text-white leading-none tracking-tighter mb-4"
-                style={{ fontSize: 'clamp(3.5rem, 10vw, 8rem)', lineHeight: 0.9 }}
+                style={{ fontSize: 'clamp(3rem, 15vw, 8rem)', lineHeight: 0.9 }}
               >
                 {slide.stat}
               </h2>
@@ -166,7 +166,7 @@ export default function HeroSlider() {
       </div>
 
       {/* NAVIGATION ARROWS */}
-      <div className="absolute z-30 inset-y-0 right-6 lg:right-10 flex flex-col items-center justify-center gap-4">
+      <div className="absolute z-30 bottom-24 right-6 lg:inset-y-0 lg:right-10 flex flex-row lg:flex-col items-center justify-center gap-4">
         <button
           onClick={prev}
           aria-label="Slide anterior"

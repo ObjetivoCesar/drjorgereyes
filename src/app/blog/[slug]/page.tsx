@@ -46,7 +46,7 @@ export default async function BlogPostPage(props: { params: Promise<{ slug: stri
                </time>
             </div>
 
-            <h1 className="font-barlow text-5xl md:text-7xl font-bold text-primario tracking-tighter leading-[0.95] mb-8 uppercase">
+            <h1 className="font-barlow text-4xl sm:text-5xl md:text-7xl font-bold text-primario tracking-tighter leading-[0.95] mb-8 uppercase">
               {post.metadata.title}
             </h1>
 
