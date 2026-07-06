@@ -110,6 +110,66 @@ const organizationSchema = {
   ],
 };
 
+const localBusinessSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  '@id': 'https://www.jorgereyesloja.ec/#business',
+  name: 'Jorge Reyes - Candidato Alcaldía Loja 2026',
+  description: 'Candidato a Alcaldía de Loja 2026 por MASS 115. Propuestas para agua potable, internet gratuito, salud y movilidad urbana en Loja, Ecuador.',
+  url: 'https://www.jorgereyesloja.ec',
+  telephone: '+593997755478',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Sucre y Rocafuerte',
+    addressLocality: 'Loja',
+    addressRegion: 'Loja',
+    postalCode: '110101',
+    addressCountry: 'EC',
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: -3.9931,
+    longitude: -79.2011,
+  },
+  openingHoursSpecification: {
+    '@type': 'OpeningHoursSpecification',
+    dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+    opens: '00:00',
+    closes: '23:59',
+  },
+  areaServed: {
+    '@type': 'City',
+    name: 'Loja',
+    '@id': 'https://en.wikipedia.org/wiki/Loja,_Ecuador',
+  },
+  sameAs: [
+    'https://www.facebook.com/jorge.reyesjaramillo',
+    'https://www.tiktok.com/@jorge.reyes.jaramillo',
+    'https://www.instagram.com/reyesjaramillojorge/',
+    'https://www.facebook.com/mass115loja',
+    'https://www.instagram.com/mass115loja',
+  ],
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Inicio',
+      item: 'https://www.jorgereyesloja.ec',
+    },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: 'Blog',
+      item: 'https://www.jorgereyesloja.ec/blog',
+    },
+  ],
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -125,6 +185,14 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
         />
       </head>
       <body className="min-h-screen flex flex-col bg-light selection:bg-acento/30">

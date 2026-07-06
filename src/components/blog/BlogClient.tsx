@@ -14,9 +14,12 @@ type BlogPost = {
     excerpt?: string;
     category?: string;
     image?: string;
-    [key: string]: any;
+    [key: string]: unknown;
   };
 };
+
+// Use a stable default date to avoid impure function call
+const FALLBACK_DATE = '2026-01-01';
 
 export default function BlogClient({ posts }: { posts: BlogPost[] }) {
   const [searchTerm, setSearchTerm] = useState('');
@@ -140,7 +143,7 @@ export default function BlogClient({ posts }: { posts: BlogPost[] }) {
                         <svg className="w-4 h-4 mr-1.5 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
-                        {new Date(post.metadata.date || Date.now()).toLocaleDateString('es-EC', { day: 'numeric', month: 'short' })}
+                        {new Date(post.metadata.date || FALLBACK_DATE).toLocaleDateString('es-EC', { day: 'numeric', month: 'short' })}
                       </span>
                     </div>
 
